@@ -31,13 +31,13 @@ def webhook():
 
     return 'OK'
     
-'''
+
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        ImageSendMessage(even.message.original_content_url, even.message.preview_image_url))
-'''
+        ImageSendMessage(event.message.content_provider))
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -45,9 +45,9 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.source.user_id))
-    line_bot_api.push_message(
-        event.source.user_id,
-        ImageSendMessage(original_content_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg', preview_image_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg'))
+    #line_bot_api.push_message(
+    #    event.source.user_id,
+    #    ImageSendMessage(original_content_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg', preview_image_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg'))
 
 
 
