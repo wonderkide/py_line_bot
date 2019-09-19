@@ -52,9 +52,16 @@ def handle_message(event):
 
 @handler.add(MessageEvent)
 def handle_message(event, destination):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.type))
+    if event.message.type == 'text':
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text))
+    elif event.message.type == 'image':
+        img = line_bot_api.get_message_content(event.message.id)
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(original_content_url=img.original_content_url, preview_image_url=img.preview_image_url))
+
 
 
 if __name__ == "__main__":
