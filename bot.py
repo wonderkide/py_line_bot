@@ -31,7 +31,7 @@ def webhook():
 
     return 'OK'
     
-
+'''
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message(event):
     line_bot_api.reply_message(
@@ -48,7 +48,13 @@ def handle_message(event):
     #line_bot_api.push_message(
     #    event.source.user_id,
     #    ImageSendMessage(original_content_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg', preview_image_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg'))
+'''
 
+@handler.add(MessageEvent)
+def handle_message(event, destination):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.type))
 
 
 if __name__ == "__main__":
