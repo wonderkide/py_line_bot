@@ -30,17 +30,19 @@ def webhook():
     return 'OK'
     
 
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        ImageSendMessage(even.message.original_content_url, even.message.preview_image_url))
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
 
-@handler.add(MessageEvent, message=ImageMessage)
-def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        ImageSendMessage(even.message.preview_image_url))
+
 
 if __name__ == "__main__":
     app.run()
