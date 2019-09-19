@@ -41,8 +41,8 @@ def handle_message(event):
 def handle_message(event):
     #user = line_bot_api.get_profile(event.user_id)
     line_bot_api.reply_message(
-        event.user_id,
-        TextSendMessage(text=event.message.text))
+        event.reply_token,
+        TextSendMessage(text=event.user_id))
     line_bot_api.push_message(
         event.user_id,
         ImageSendMessage(original_content_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg', preview_image_url='https://hoodline.imgix.net/uploads/story/image/579057/..destination_photo_url..RIOA-sky.jpg.jpg'))
