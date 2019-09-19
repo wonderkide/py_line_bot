@@ -57,10 +57,11 @@ def handle_message(event, destination):
             event.reply_token,
             TextSendMessage(text=event.message.text))
     elif event.message.type == 'image':
-        img = line_bot_api.get_message_content(event.message.id)
+        #img = line_bot_api.get_message_content(event.message.id)
         line_bot_api.reply_message(
             event.reply_token,
-            ImageSendMessage(original_content_url=img.original_content_url, preview_image_url=img.preview_image_url))
+            #ImageSendMessage(original_content_url=img.original_content_url, preview_image_url=img.preview_image_url))
+            TextSendMessage(text=event.message.content_provider))
 
 
 
