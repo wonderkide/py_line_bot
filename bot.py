@@ -36,7 +36,7 @@ def webhook():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        ImageSendMessage(event.message.content_provider))
+        TextSendMessage(text=event.message.type))
 
 
 @handler.add(MessageEvent, message=TextMessage)
