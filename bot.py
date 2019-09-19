@@ -62,7 +62,7 @@ def handle_message(event, destination):
         line_bot_api.reply_message(
             event.reply_token,
             #ImageSendMessage(original_content_url=img.original_content_url, preview_image_url=img.preview_image_url))
-            TextSendMessage(text=json.dump(event.message)))
+            TextSendMessage(text=type(event.message)))
 
 
 if __name__ == "__main__":
