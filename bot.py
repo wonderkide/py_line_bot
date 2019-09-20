@@ -60,15 +60,16 @@ def handle_message(event, destination):
     elif event.message.type == 'image':
         #img = line_bot_api.get_message_content(event.message.id)
         if event.message.content_provider.type == 'line':
-            message_content = line_bot_api.get_message_content(event.message.id)
+            #message_content = line_bot_api.get_message_content(event.message.id)
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=event.message.content_provider.type))
 
-            
+            '''
             with open('test.jpg', 'wb') as fd:
                 for chunk in message_content.iter_content():
                     fd.write(chunk)
+            '''
 
         line_bot_api.reply_message(
             event.reply_token,
