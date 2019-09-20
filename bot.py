@@ -61,7 +61,6 @@ def handle_message(event, destination):
         #img = line_bot_api.get_message_content(event.message.id)
         if event.message.content_provider.type == 'line':
             message_content = line_bot_api.get_message_content(event.message.id)
-            message_content.
             with open('test.png', 'wb') as fd:
                 for chunk in message_content.iter_content():
                     fd.write(chunk)
