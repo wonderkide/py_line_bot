@@ -56,13 +56,13 @@ def handle_message(event, destination):
     if event.message.type == 'text':
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=json.dump(event.message.text)))
+            TextSendMessage(text=event.message.text))
     elif event.message.type == 'image':
         #img = line_bot_api.get_message_content(event.message.id)
         line_bot_api.reply_message(
             event.reply_token,
             #ImageSendMessage(original_content_url=img.original_content_url, preview_image_url=img.preview_image_url))
-            TextSendMessage(text=event.message.original_content_url))
+            TextSendMessage(text=event.message.content_provider.type))
 
 
 if __name__ == "__main__":
