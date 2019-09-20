@@ -56,7 +56,7 @@ def handle_message(event, destination):
     if event.message.type == 'text':
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=event.message.text))
+            TextSendMessage(text=json.dump(event.message.text)))
     elif event.message.type == 'image':
         #img = line_bot_api.get_message_content(event.message.id)
         line_bot_api.reply_message(
