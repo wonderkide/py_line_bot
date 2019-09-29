@@ -57,6 +57,10 @@ def handle_message(event, destination):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
+
+        with open('file.txt', 'a') as fd:
+                for chunk in message_content.iter_content():
+                    fd.write('Hello\n')
     elif event.message.type == 'image':
         #img = line_bot_api.get_message_content(event.message.id)
         if event.message.content_provider.type == 'line':
