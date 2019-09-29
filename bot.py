@@ -27,8 +27,8 @@ def hello():
 
 @app.route("/img")
 def img():
-    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'test.jpg')
-    return render_template("test.html", user_image = full_filename)
+    #full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'test.jpg')
+    return render_template("test.html")
 
 @app.route("/webhook", methods=['POST'])
 def webhook():
