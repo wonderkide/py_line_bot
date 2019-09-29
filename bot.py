@@ -15,6 +15,10 @@ handler = WebhookHandler(line_channel_setting.secret)
 def hello():
     return "Hello World!"
 
+@app.route("/img")
+def img():
+    return "img"
+
 @app.route("/webhook", methods=['POST'])
 def webhook():
     # get X-Line-Signature header value
