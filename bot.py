@@ -6,6 +6,8 @@ from linebot.models import (MessageEvent, TextMessage, TextSendMessage, ImageMes
 import line_channel_setting
 import json
 
+from PIL import Image
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(line_channel_setting.token)
@@ -17,7 +19,9 @@ def hello():
 
 @app.route("/img")
 def img():
-    return "img"
+    image = Image.open('test.jpg')
+    image.show()
+    return image.show()
 
 @app.route("/webhook", methods=['POST'])
 def webhook():
