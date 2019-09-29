@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, )
@@ -7,8 +7,16 @@ import line_channel_setting
 import json
 
 from PIL import Image
+#from flask import Flask, render_template
+import os
+
+PEOPLE_FOLDER = os.path.join('static', 'test')
+
+
 
 app = Flask(__name__)
+
+app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 
 line_bot_api = LineBotApi(line_channel_setting.token)
 handler = WebhookHandler(line_channel_setting.secret)
@@ -19,9 +27,8 @@ def hello():
 
 @app.route("/img")
 def img():
-    image = Image.open('test.jpg')
-    image.show()
-    return image.show()
+    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'test.jpg')
+    return render_template("test.html", user_image = full_filename)
 
 @app.route("/webhook", methods=['POST'])
 def webhook():
