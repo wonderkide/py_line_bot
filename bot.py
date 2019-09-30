@@ -87,7 +87,7 @@ def handle_message(event, destination):
         #img = line_bot_api.get_message_content(event.message.id)
         if event.message.content_provider.type == 'line':
             message_content = line_bot_api.get_message_content(event.message.id)
-            #line_bot_api.push_message(event.source.user_id,TextSendMessage(text=event.message.id))
+            line_bot_api.push_message(event.source.user_id,TextSendMessage(text=event.message.id))
             #line_bot_api.reply_message(
             #    event.reply_token,
             #    TextSendMessage(text=event.message.content_provider.type))
