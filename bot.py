@@ -6,17 +6,17 @@ from linebot.models import (MessageEvent, TextMessage, TextSendMessage, ImageMes
 import line_channel_setting
 import json
 
-#from PIL import Image
+from PIL import Image
 #from flask import Flask, render_template
-#import os
+import os
 
-#PEOPLE_FOLDER = os.path.join('static', 'test')
+PEOPLE_FOLDER = os.path.join('static', 'test')
 
 
 
 app = Flask(__name__)
 
-#app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
+app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 
 line_bot_api = LineBotApi(line_channel_setting.token)
 handler = WebhookHandler(line_channel_setting.secret)
@@ -28,7 +28,10 @@ def hello():
 @app.route("/img")
 def img():
     #full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'test.jpg')
-    return render_template("test.html", user_image = 'test.jpg')
+    #return render_template("/test.html", user_image = full_filename)
+    image = Image.open('test.jpg')
+    image.show()
+    return 'test.jpg';
 
 @app.route("/webhook", methods=['POST'])
 def webhook():
