@@ -31,11 +31,11 @@ def img():
     #return render_template("/test.html", user_image = full_filename)
     #image = Image.open('test.jpg')
     #image.show()
-    message_content = line_bot_api.get_message_content(10657411630414)
-    with open('img/'+ str(10657411630414) +'.jpg', 'wb') as fd:
+    message_content = line_bot_api.get_message_content(10657574006060)
+    with open('img/'+ str(10657574006060) +'.jpg', 'wb') as fd:
                 for chunk in message_content.iter_content():
                     fd.write(chunk)
-    return 'gg';
+    return '10657574006060';
 
 @app.route("/webhook", methods=['POST'])
 def webhook():
