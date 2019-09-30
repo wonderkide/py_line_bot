@@ -29,9 +29,13 @@ def hello():
 def img():
     #full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'test.jpg')
     #return render_template("/test.html", user_image = full_filename)
-    image = Image.open('test.jpg')
-    image.show()
-    return 'test.jpg';
+    #image = Image.open('test.jpg')
+    #image.show()
+    message_content = line_bot_api.get_message_content(10657411630414)
+    with open('img/'+ str(10657411630414) +'.jpg', 'wb') as fd:
+                for chunk in message_content.iter_content():
+                    fd.write(chunk)
+    return 'gg';
 
 @app.route("/webhook", methods=['POST'])
 def webhook():
@@ -83,16 +87,16 @@ def handle_message(event, destination):
         #img = line_bot_api.get_message_content(event.message.id)
         if event.message.content_provider.type == 'line':
             message_content = line_bot_api.get_message_content(event.message.id)
-            line_bot_api.push_message(event.source.user_id,TextSendMessage(text=event.message.id))
+            #line_bot_api.push_message(event.source.user_id,TextSendMessage(text=event.message.id))
             #line_bot_api.reply_message(
             #    event.reply_token,
             #    TextSendMessage(text=event.message.content_provider.type))
 
-            '''
-            with open('test.jpg', 'wb') as fd:
+            
+            with open('img/'+ str(event.source.user_id) + '_' + str(event.message.id) +'.jpg', 'wb') as fd:
                 for chunk in message_content.iter_content():
                     fd.write(chunk)
-            '''
+            
         '''
         line_bot_api.reply_message(
             event.reply_token,
